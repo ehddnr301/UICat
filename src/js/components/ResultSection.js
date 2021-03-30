@@ -50,8 +50,13 @@ export default class ResultSection {
           catId.className = "cat-id";
           catId.innerText = cat.id;
 
+          // 별점
+          const stars = document.createElement("div");
+          stars.className = "stars";
+
           catWrapper.appendChild(catImage);
           catWrapper.appendChild(catId);
+          catWrapper.appendChild(stars);
           catContainer.appendChild(catWrapper);
         });
 
