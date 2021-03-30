@@ -33,7 +33,31 @@ export default class ResultSection {
         breedTitle.className = "breed-title";
         breedTitle.innerText = name;
 
+        const catContainer = document.createElement("div");
+        catContainer.className = "cat-container";
+
+        breed.forEach((cat, idx) => {
+          if (idx == 0) return;
+
+          const catWrapper = document.createElement("article");
+          catWrapper.className = "cat-wrapper";
+          catWrapper.id = `cat-${idx}`;
+
+          const catImage = document.createElement("img");
+          catImage.className = "cat-image";
+          catImage.src = cat.url;
+
+          // const catId = document.createElement("div");
+          // catId.className = "cat-id";
+          // catId.innerText = cat.id;
+
+          catWrapper.appendChild(catImage);
+          // catWrapper.appendChild(catId);
+          catContainer.appendChild(catWrapper);
+        });
+
         breedContainer.appendChild(breedTitle);
+        breedContainer.appendChild(catContainer);
       });
 
       this.section.appendChild(breedContainer);
