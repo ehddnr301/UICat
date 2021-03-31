@@ -7,7 +7,24 @@ import { getItem, setItem } from "./util/sessionStorage.js";
 
 export default class App {
   constructor($target) {
-    const header = new Header({ $target });
+    let data = getItem("data");
+
+    const header = new Header({
+      $target,
+      buttonClick: async () => {
+        const { isError, data: newData } = await api.fetchCats("no");
+
+        if (!isError) {
+          setItem("data", data || newData);
+          data = getItem("data");
+          resultSection.setState(data);
+        }
+      },
+    });
+
+    const resultSection = new ResultSection({
+      $target,
+    });
 
     // const data = getItem("data");
 

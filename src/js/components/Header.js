@@ -1,7 +1,9 @@
 export default class Header {
-  constructor({ $target }) {
+  constructor({ $target, buttonClick }) {
     this.header = document.createElement("header");
     this.header.className = "header";
+    this.buttonClick = buttonClick;
+    this.data = [];
 
     $target.appendChild(this.header);
 
@@ -13,6 +15,12 @@ export default class Header {
     Title.className = "header__title";
     Title.innerText = "UI with Cat";
 
+    const catButton = document.createElement("button");
+    catButton.className = "cat-button";
+    catButton.innerText = "고양이";
+    catButton.addEventListener("click", this.buttonClick);
+
     this.header.appendChild(Title);
+    this.header.appendChild(catButton);
   }
 }

@@ -28,13 +28,11 @@ export const api = {
         );
       });
       const responses = await Promise.all(requests);
-      const results = responses.map((response, idx) => {
-        return [breeds[idx], ...response];
-      });
-      // const result = Array.prototype.concat.apply([], responses);
+      // const results = responses.map((response) => response);
+      const result = Array.prototype.concat.apply([], responses);
       return {
         isError: false,
-        data: results,
+        data: result,
       };
     } catch (e) {
       return {
