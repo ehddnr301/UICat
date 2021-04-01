@@ -1,5 +1,6 @@
 import { api } from "./api/catAPI.js";
 import Header from "./components/Header.js";
+import ProgressBar from "./components/Progressbar.js";
 import ResultSection from "./components/ResultSection.js";
 // import Star from "./util/componentUtil/Star.js";
 // import { contextMenu } from "./util/componentUtil/contextMenu.js";
@@ -25,7 +26,14 @@ export default class App {
     const resultSection = new ResultSection({
       $target,
     });
+    // const progressSection = new ProgressBar({
+    //   $target,
+    //   limit: data.length,
+    // });
 
+    // progressSection.increaseProgress(
+    //   document.querySelector(".progress-bar > span")
+    // );
     // const data = getItem("data");
 
     // const resultSection = new ResultSection({
