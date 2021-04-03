@@ -1,9 +1,5 @@
 import { api } from "./api/catAPI.js";
 import Header from "./components/Header.js";
-import ProgressBar from "./components/Progressbar.js";
-import ResultSection from "./components/ResultSection.js";
-// import Star from "./util/componentUtil/Star.js";
-// import { contextMenu } from "./util/componentUtil/contextMenu.js";
 import { getItem, setItem } from "./util/sessionStorage.js";
 
 export default class App {
@@ -18,41 +14,8 @@ export default class App {
         if (!isError) {
           setItem("data", data || newData);
           data = getItem("data");
-          resultSection.setState(data);
         }
       },
     });
-
-    const resultSection = new ResultSection({
-      $target,
-    });
-    // const progressSection = new ProgressBar({
-    //   $target,
-    //   limit: data.length,
-    // });
-
-    // progressSection.increaseProgress(
-    //   document.querySelector(".progress-bar > span")
-    // );
-    // const data = getItem("data");
-
-    // const resultSection = new ResultSection({
-    //   $target,
-    //   onLoad: async () => {
-    //     const { isError, data: newData } = await api.fetchCats("no");
-
-    //     if (!isError) {
-    //       setItem("data", data || newData);
-    //       resultSection.setState(data);
-    // contextMenu(
-    //   document.querySelectorAll(".cat-container"),
-    //   document.querySelectorAll(".cat-container .cat-wrapper")
-    // );
-    // const stars = document.querySelector(".stars");
-    // const star = new Star(stars);
-    // star.render();
-    //     }
-    //   },
-    // });
   }
 }
