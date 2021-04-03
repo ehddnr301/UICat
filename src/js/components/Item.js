@@ -1,11 +1,10 @@
 import { createElem } from "../util/createElement.js";
 
 export default class Item {
-  constructor({ $target, data, onClick }) {
+  constructor({ $target, data }) {
     this.data = data;
     this.item = createElem("article", "item");
     this.item.dataset.id = data.id;
-    this.item.addEventListener("click", onClick);
     $target.appendChild(this.item);
 
     this.render();

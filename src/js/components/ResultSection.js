@@ -41,9 +41,9 @@ export default class ResultSection {
       new Item({
         $target: itemContainer,
         data: cat,
-        onClick: this.UI,
       });
     });
+    itemContainer.addEventListener("click", this.UI);
 
     this.section.appendChild(itemContainer);
   }
