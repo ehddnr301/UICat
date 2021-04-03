@@ -1,0 +1,10 @@
+@import "./component/header.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #0e83cd;
+  font-family: "Yeon Sung", cursive;
+}

@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+.header .header__title {
+  font-size: 52px;
+  color: #fff;
+  margin-right: 30px;
+}
+.header .option-box {
+  display: flex;
+  flex-direction: column;
+}
+.header .option-box .cat-button {
+  margin-bottom: 10px;
+}
+
+/* * Button style */
+.header .cat-button {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 10px 30px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  border: 3px solid #fff;
+  color: #fff;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.header .cat-button:before {
+  z-index: 2;
+}
+.header .cat-button:after {
+  width: 100%;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+.header .cat-button:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+}
+.header .cat-button:hover,
+.header .cat-button:active {
+  color: #0e83cd;
+}
+.header .cat-button:hover:after {
+  height: 150%;
+  opacity: 1;
+}
+
+.header .cat-button:active:after {
+  height: 400%;
+  opacity: 1;
+}
