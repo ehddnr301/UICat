@@ -9,6 +9,9 @@
 .result-section .item-container .item {
   margin: 10px;
 }
+.result-section .item-container .item img {
+  box-shadow: 3px 3px 10px 3px #000000;
+}
 .result-section .item-container .item .cat-info {
   display: flex;
   flex-direction: column;
