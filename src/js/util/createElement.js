@@ -1,7 +1,6 @@
-export const createElem = (tag, className = "", id = "") => {
+export const createElem = (tag, className = "") => {
   const element = document.createElement(tag);
   element.className = className;
-  element.id = id;
 
   return element;
 };

@@ -41,4 +41,19 @@ export const api = {
       };
     }
   },
+
+  fetchRandomCats: async () => {
+    try {
+      const result = await request(`${API_ENDPOINT}/images/search?limit=40`);
+      return {
+        isError: false,
+        data: result,
+      };
+    } catch (e) {
+      return {
+        isError: true,
+        data: e,
+      };
+    }
+  },
 };

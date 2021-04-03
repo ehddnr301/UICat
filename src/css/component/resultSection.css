@@ -1,0 +1,16 @@
+.result-section {
+  margin-top: 30px;
+}
+.result-section .item-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.result-section .item-container .item {
+  margin: 10px;
+}
+.result-section .item-container .item .cat-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

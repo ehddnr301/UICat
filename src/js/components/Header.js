@@ -29,6 +29,7 @@ export default class Header {
       option.innerText = UI;
       if (idx === 0) {
         const initialOption = createElem("option");
+        initialOption.value = null;
         initialOption.innerText = "UI옵션을 선택해주세요.";
 
         select.appendChild(initialOption);
