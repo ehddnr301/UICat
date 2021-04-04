@@ -2,6 +2,7 @@ import { api } from "./api/catAPI.js";
 import Header from "./components/Header.js";
 import ResultSection from "./components/resultSection.js";
 import { addCss, undoCss } from "./util/addCss.js";
+import AnalogClock from "./util/analogClock.js";
 import { contextMenu } from "./util/contextMenu.js";
 import ScrollIndicator from "./util/scrollIndicator.js";
 import { getItem, setItem } from "./util/sessionStorage.js";
@@ -18,6 +19,11 @@ export default class App {
         isClickevent: false,
         func: () => scrollIndicator.addScrollIndicator(),
         removeFunc: () => scrollIndicator.removeScrollIndicator(),
+      },
+      analogClock: {
+        isClickevent: false,
+        func: () => analogClock.addAnalogClock(),
+        removeFunc: () => analogClock.removeAnalogClock(),
       },
     };
     let data = getItem("data");
@@ -55,6 +61,10 @@ export default class App {
     });
 
     const scrollIndicator = new ScrollIndicator({
+      $target,
+    });
+
+    const analogClock = new AnalogClock({
       $target,
     });
   }
