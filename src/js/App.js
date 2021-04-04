@@ -9,10 +9,15 @@ import { getItem, setItem } from "./util/sessionStorage.js";
 export default class App {
   constructor($target) {
     this.UIObject = {
-      contextMenu: { func: (e) => contextMenu(e), isClickevent: true },
+      contextMenu: {
+        isClickevent: true,
+        func: (e) => contextMenu(e),
+        removeFunc: () => null,
+      },
       scrollIndicator: {
-        func: () => scrollIndicator.addScrollIndicator(),
         isClickevent: false,
+        func: () => scrollIndicator.addScrollIndicator(),
+        removeFunc: () => scrollIndicator.removeScrollIndicator(),
       },
     };
     let data = getItem("data");
@@ -22,19 +27,24 @@ export default class App {
       buttonClick: async () => {
         const { isError, data: newData } = await api.fetchRandomCats();
         if (!isError) {
-          const UI = document.querySelector(".ui-select");
+          const { value: UI } = document.querySelector(".ui-select");
           setItem("data", data || newData);
           data = getItem("data");
           resultSection.setState(data);
+          this.removeEventListener();
 
-          if (UI.value === "null") {
+          if (UI === "null") {
             undoCss();
 
             return;
           }
 
-          resultSection.setUI(UI.value);
-          addCss(UI.value);
+          if (!this.UIObject[UI].isClickevent) this.UIObject[UI].func();
+          else {
+            const onClick = this.UIObject[UI].func;
+            resultSection.setUI(onClick);
+          }
+          addCss(UI);
         }
       },
       UIArray: Object.keys(this.UIObject),
@@ -42,12 +52,24 @@ export default class App {
 
     const resultSection = new ResultSection({
       $target,
-      UIObject: this.UIObject,
     });
 
     const scrollIndicator = new ScrollIndicator({
       $target,
     });
-    // scrollIndicator.addScrollIndicator();
+  }
+
+  removeEventListener() {
+    const container = document.querySelector(".item-container");
+
+    for (const [key, { isClickevent, func, removeFunc }] of Object.entries(
+      this.UIObject
+    )) {
+      if (isClickevent) {
+        container.removeEventListener("click", func);
+      } else {
+        removeFunc();
+      }
+    }
   }
 }

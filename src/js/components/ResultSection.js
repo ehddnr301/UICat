@@ -2,9 +2,9 @@ import { createElem } from "../util/createElement.js";
 import Item from "./Item.js";
 
 export default class ResultSection {
-  constructor({ $target, UIObject }) {
+  constructor({ $target }) {
     this.data = [];
-    this.UIObject = UIObject;
+    this.onClick = null;
     this.UI = null;
     this.section = createElem("section", "result-section");
 
@@ -13,12 +13,8 @@ export default class ResultSection {
     this.render();
   }
 
-  setUI(UI) {
-    if (!(UI in this.UIObject)) return;
-
-    if (!this.UIObject[UI].isClickevent) this.UIObject[UI].func();
-
-    this.UI = this.UIObject[UI].func;
+  setUI(onClick) {
+    this.onClick = onClick;
 
     this.render();
   }
@@ -34,10 +30,6 @@ export default class ResultSection {
 
     this.section.innerHTML = "";
 
-    const hi = (e) => {
-      console.log(e);
-    };
-
     const itemContainer = createElem("div", "item-container");
     this.data.forEach((cat) => {
       new Item({
@@ -45,7 +37,7 @@ export default class ResultSection {
         data: cat,
       });
     });
-    itemContainer.addEventListener("click", this.UI);
+    itemContainer.addEventListener("click", this.onClick);
 
     this.section.appendChild(itemContainer);
   }
