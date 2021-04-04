@@ -16,7 +16,9 @@ export default class ResultSection {
   setUI(UI) {
     if (!(UI in this.UIObject)) return;
 
-    this.UI = this.UIObject[UI];
+    if (!this.UIObject[UI].isClickevent) this.UIObject[UI].func();
+
+    this.UI = this.UIObject[UI].func;
 
     this.render();
   }

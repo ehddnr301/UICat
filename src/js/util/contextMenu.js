@@ -1,5 +1,3 @@
-import { addCss } from "./addCss.js";
-
 export const contextMenu = (e) => {
   let targetElem = e.target;
 

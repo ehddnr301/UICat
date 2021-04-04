@@ -3,11 +3,18 @@ import Header from "./components/Header.js";
 import ResultSection from "./components/resultSection.js";
 import { addCss, undoCss } from "./util/addCss.js";
 import { contextMenu } from "./util/contextMenu.js";
+import ScrollIndicator from "./util/scrollIndicator.js";
 import { getItem, setItem } from "./util/sessionStorage.js";
 
 export default class App {
   constructor($target) {
-    this.UIObject = { contextMenu: (e) => contextMenu(e) };
+    this.UIObject = {
+      contextMenu: { func: (e) => contextMenu(e), isClickevent: true },
+      scrollIndicator: {
+        func: () => scrollIndicator.addScrollIndicator(),
+        isClickevent: false,
+      },
+    };
     let data = getItem("data");
 
     const header = new Header({
@@ -37,5 +44,10 @@ export default class App {
       $target,
       UIObject: this.UIObject,
     });
+
+    const scrollIndicator = new ScrollIndicator({
+      $target,
+    });
+    // scrollIndicator.addScrollIndicator();
   }
 }

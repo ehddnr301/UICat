@@ -1,8 +1,13 @@
 @import "./component/header.css";
 @import "./component/resultSection.css";
-
+@import "./component/scrollIndicator.css";
 * {
   box-sizing: border-box;
+}
+
+/* Hide scroll-bar */
+body::-webkit-scrollbar {
+  display: none;
 }
 
 body {
