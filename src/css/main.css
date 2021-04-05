@@ -1,5 +1,6 @@
 @import "./component/header.css";
 @import "./component/resultSection.css";
+@import "./component/catLoading.css";
 
 * {
   box-sizing: border-box;

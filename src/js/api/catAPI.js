@@ -42,9 +42,11 @@ export const api = {
     }
   },
 
-  fetchRandomCats: async () => {
+  fetchRandomCats: async (num = 20) => {
     try {
-      const result = await request(`${API_ENDPOINT}/images/search?limit=40`);
+      const result = await request(
+        `${API_ENDPOINT}/images/search?limit=${num}`
+      );
       return {
         isError: false,
         data: result,

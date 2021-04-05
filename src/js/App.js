@@ -1,9 +1,11 @@
 import { api } from "./api/catAPI.js";
 import Header from "./components/Header.js";
+import Loading from "./components/Loading.js";
 import ResultSection from "./components/resultSection.js";
 import { addCss, undoCss } from "./util/addCss.js";
 import AnalogClock from "./util/analogClock.js";
 import { contextMenu } from "./util/contextMenu.js";
+import InfiniteScroll from "./util/infiniteScroll.js";
 import ScrollIndicator from "./util/scrollIndicator.js";
 import { getItem, setItem } from "./util/sessionStorage.js";
 
@@ -26,33 +28,10 @@ export default class App {
         removeFunc: () => analogClock.removeAnalogClock(),
       },
     };
-    let data = getItem("data");
 
     const header = new Header({
       $target,
-      buttonClick: async () => {
-        const { isError, data: newData } = await api.fetchRandomCats();
-        if (!isError) {
-          const { value: UI } = document.querySelector(".ui-select");
-          setItem("data", data || newData);
-          data = getItem("data");
-          resultSection.setState(data);
-          this.removeEventListener();
-
-          if (UI === "null") {
-            undoCss();
-
-            return;
-          }
-
-          if (!this.UIObject[UI].isClickevent) this.UIObject[UI].func();
-          else {
-            const onClick = this.UIObject[UI].func;
-            resultSection.setUI(onClick);
-          }
-          addCss(UI);
-        }
-      },
+      buttonClick: () => this.onClick(resultSection, loading),
       UIArray: Object.keys(this.UIObject),
     });
 
@@ -67,6 +46,12 @@ export default class App {
     const analogClock = new AnalogClock({
       $target,
     });
+
+    const loading = new Loading({
+      $target,
+    });
+
+    infiniteScroll.addInfiniteScroll();
   }
 
   removeEventListener() {
@@ -80,6 +65,45 @@ export default class App {
       } else {
         removeFunc();
       }
+    }
+  }
+
+  async onClick(resultSection, loading) {
+    let data = getItem("data");
+    loading.toggleLoading();
+    const { isError, data: newData } = await api.fetchRandomCats();
+    loading.toggleLoading();
+
+    if (!isError) {
+      const { value: UI } = document.querySelector(".ui-select");
+      setItem("data", data || newData);
+      data = getItem("data");
+      resultSection.setState(data);
+      this.removeEventListener();
+
+      if (UI === "null") {
+        undoCss();
+
+        return;
+      }
+
+      if (!this.UIObject[UI].isClickevent) this.UIObject[UI].func();
+      else {
+        const onClick = this.UIObject[UI].func;
+        resultSection.setUI(onClick);
+      }
+      addCss(UI);
+    }
+  }
+
+  async onScroll(resultSection) {
+    const { isError, data: newData } = await api.fetchRandomCats(5);
+
+    if (!isError) {
+      let data = getItem("data");
+      data = data.concat(newData);
+      setItem("data", data);
+      resultSection.setState(data);
     }
   }
 }

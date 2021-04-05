@@ -1,0 +1,13 @@
+.loading {
+  width: 100%;
+}
+.loading.hidden {
+  display: none;
+}
+.loading .loading-image {
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+  height: 10px;
+  border-radius: 0;
+}
