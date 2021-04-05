@@ -47,6 +47,10 @@ export default class App {
       $target,
     });
 
+    const infiniteScroll = new InfiniteScroll({
+      onScroll: () => this.onScroll(resultSection, loading),
+    });
+
     const loading = new Loading({
       $target,
     });
@@ -96,10 +100,13 @@ export default class App {
     }
   }
 
-  async onScroll(resultSection) {
-    const { isError, data: newData } = await api.fetchRandomCats(5);
+  async onScroll(resultSection, loading) {
+    loading.toggleLoading();
 
+    const { isError, data: newData } = await api.fetchRandomCats(5);
     if (!isError) {
+      loading.toggleLoading();
+
       let data = getItem("data");
       data = data.concat(newData);
       setItem("data", data);
