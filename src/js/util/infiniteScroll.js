@@ -7,7 +7,7 @@ export default class InfiniteScroll {
     };
   }
 
-  throttle = (func, delay) => {
+  throttle(func, delay) {
     let throttled = false;
 
     return (...args) => {
@@ -19,7 +19,7 @@ export default class InfiniteScroll {
         }, delay);
       }
     };
-  };
+  }
 
   addInfiniteScroll() {
     window.addEventListener("scroll", this.throttle(this.infiniteScroll, 3000));

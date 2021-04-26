@@ -12,14 +12,18 @@ module.exports = {
     clean: true,
   },
 
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.css$/,
-  //       use: ["style-loader", "css-loader"],
-  //     },
-  //   ],
-  // },
+  module: {
+    rules: [
+      // {
+      //   test: /\.css$/,
+      //   use: ["style-loader", "css-loader", "postcss-loader"],
+      // },
+      {
+        test: /\.js$/,
+        use: ["babel-loader"],
+      },
+    ],
+  },
 
   plugins: [
     new HTMLPlguin({
@@ -32,6 +36,7 @@ module.exports = {
         },
       ],
     }),
+    // require("autoprefixer"),
   ],
 
   devServer: {
