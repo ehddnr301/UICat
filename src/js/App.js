@@ -27,6 +27,11 @@ export default class App {
         func: () => analogClock.addAnalogClock(),
         removeFunc: () => analogClock.removeAnalogClock(),
       },
+      infiniteScroll: {
+        isClickevent: false,
+        func: () => infiniteScroll.addInfiniteScroll(),
+        removeFunc: () => infiniteScroll.removeInfiniteScroll(),
+      },
     };
 
     const header = new Header({
@@ -54,8 +59,6 @@ export default class App {
     const loading = new Loading({
       $target,
     });
-
-    infiniteScroll.addInfiniteScroll();
   }
 
   removeEventListener() {
