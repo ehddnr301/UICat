@@ -18,5 +18,10 @@
 
 #### html-webpack-plugin
 
-- https://www.npmjs.com/package/html-webpack-plugin
+- https://webpack.js.org/plugins/html-webpack-plugin/
 - 결과물을 html에 자동으로 주입해준다.
+
+#### copy-webpack-plugin
+
+- https://webpack.js.org/plugins/copy-webpack-plugin/
+- build dir 로 폴더를 카피해준다. 주로 이미지를 담아두는 static 폴더를 옮기는데 활용되면 좋을듯 함
