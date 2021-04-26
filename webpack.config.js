@@ -12,6 +12,15 @@ module.exports = {
     clean: true,
   },
 
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.css$/,
+  //       use: ["style-loader", "css-loader"],
+  //     },
+  //   ],
+  // },
+
   plugins: [
     new HTMLPlguin({
       template: "./src/index.html",

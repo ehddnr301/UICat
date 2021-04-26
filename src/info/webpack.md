@@ -10,10 +10,24 @@
 - output 의 path 는 절대경로로 명시한다. (https://webpack.js.org/configuration/output/#outputpath)
 - devServer : webpack-dev-server 로 실행될 때에 동작을 컨트롤 합니다. (https://webpack.js.org/configuration/dev-server/#devserver)
 
+### modules
+
+- https://webpack.js.org/configuration/module/
+- 프로젝트내 다양한 모듈의 동작을 결정하는 부분
+- test 로 매칭해서 use로 패키지를 사용함
+
+#### css-loader
+
+- 자바스크립트에서 css를 해석하는 용도
+
+#### style-loader
+
+- html에 css를 삽입하는 역할
+
 ### plugins
 
-- third party package 를 넣으면 된다.
 - https://webpack.js.org/configuration/plugins/#plugins
+- third party package 를 넣으면 된다.
 - webpack plugin 을 추가합니다.
 
 #### html-webpack-plugin
